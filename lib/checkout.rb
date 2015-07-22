@@ -10,11 +10,7 @@ class Checkout
   end
 
   def total
-    sum = 0
-    @items.each do |item|
-      sum += item.price
-    end
-    return sum
+    @items.reduce(0) { |sum, item| sum + item.price }
   end
 end
 
