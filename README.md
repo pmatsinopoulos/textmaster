@@ -1,5 +1,5 @@
 # TextMaster coding exercise
-[![Build Status](https://travis-ci.org/merwan/testmaster.svg?branch=master)](https://travis-ci.org/merwan/textmaster)
+[![Build Status](https://travis-ci.org/merwan/textmaster.svg?branch=master)](https://travis-ci.org/merwan/textmaster)
 
 From https://gist.github.com/textmaster/3fcc41e5e538dbb86947
 
