@@ -75,4 +75,51 @@ RSpec.describe Checkout do
 
     expect(co.total).to eq(14.34)
   end
+
+  it 'does not apply bulk purchase discount for 2 apples' do
+    pricing_rules = [
+      BulkPurchaseRule.new(apple)
+    ]
+
+    co = Checkout.new(pricing_rules)
+    co.scan(apple)
+    co.scan(apple)
+
+    expect(co.total).to eq(10)
+  end
+
+  it 'applies bulk purchase discount for 3 apples' do
+    pricing_rules = [
+      BulkPurchaseRule.new(apple)
+    ]
+
+    co = Checkout.new(pricing_rules)
+    co.scan(apple)
+    co.scan(apple)
+    co.scan(apple)
+
+    expect(co.total).to eq(13.50)
+  end
+
+  it 'applies bulk purchase discount for 10 apples' do
+    pricing_rules = [
+      BulkPurchaseRule.new(apple)
+    ]
+
+    co = Checkout.new(pricing_rules)
+    10.times { co.scan(apple) }
+
+    expect(co.total).to eq(45)
+  end
+
+  it 'applies 50% bulk purchase discount for more than 5 apples' do
+    pricing_rules = [
+      BulkPurchaseRule.new(apple, 50, 5)
+    ]
+
+    co = Checkout.new(pricing_rules)
+    10.times { co.scan(apple) }
+
+    expect(co.total).to eq(25)
+  end
 end
