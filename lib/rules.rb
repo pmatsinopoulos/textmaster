@@ -4,8 +4,7 @@ class BuyOneGetOneFreeRule
   end
 
   def apply(items)
-    occurences = items.count { |item| item.code == @product.code }
-    discount = occurences / 2
-    return discount * @product.price
+    occurences = items.count { |item| item.code == @product.code } / 2
+    return occurences * @product.price
   end
 end

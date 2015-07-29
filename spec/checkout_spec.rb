@@ -60,4 +60,19 @@ RSpec.describe Checkout do
 
     expect(co.total).to eq(11.23)
   end
+
+  it 'applies buy-one-get-one-free offers on coffee and fruit tea' do
+    pricing_rules = [
+      BuyOneGetOneFreeRule.new(coffee),
+      BuyOneGetOneFreeRule.new(fruit_tea)
+    ]
+
+    co = Checkout.new(pricing_rules)
+    co.scan(coffee)
+    co.scan(fruit_tea)
+    co.scan(coffee)
+    co.scan(fruit_tea)
+
+    expect(co.total).to eq(14.34)
+  end
 end
